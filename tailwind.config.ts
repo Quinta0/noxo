@@ -1,6 +1,15 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+const config: {
+  plugins: any[];
+  theme: {
+    extend: {
+      keyframes: { rise: { "100%": { transform: string }; "0%": { transform: string } } };
+      animation: { rise: string }
+    }
+  };
+  content: string[]
+} = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
