@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react'
 
 export default function Component() {
-  const [board, setBoard] = useState(Array(9).fill(null))
-  const [isXNext, setIsXNext] = useState(true)
-  const [winner, setWinner] = useState(null)
-  const [isDraw, setIsDraw] = useState(false)
+  const [board, setBoard] = useState<(string | null)[]>(Array(9).fill(null))
+  const [isXNext, setIsXNext] = useState<boolean>(true)
+  const [winner, setWinner] = useState<string | null>(null)
+  const [isDraw, setIsDraw] = useState<boolean>(false)
 
-  const checkWinner = (squares) => {
+  const checkWinner = (squares: (string | null)[]): string | null => {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -28,11 +28,11 @@ export default function Component() {
     return null
   }
 
-  const checkDraw = (squares) => {
+  const checkDraw = (squares: (string | null)[]): boolean => {
     return squares.every(square => square !== null)
   }
 
-  const handleClick = (index) => {
+  const handleClick = (index: number): void => {
     if (board[index] || winner || isDraw) return
     const newBoard = [...board]
     newBoard[index] = isXNext ? 'X' : 'O'
@@ -49,7 +49,7 @@ export default function Component() {
     }
   }, [board])
 
-  const resultMessage = () => {
+  const resultMessage = (): string | null => {
     if (winner) {
       return `${winner} wins!`
     } else if (isDraw) {
